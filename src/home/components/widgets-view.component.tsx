@@ -81,7 +81,7 @@ const WidgetsBar = () => {
           {commonWidgets.map((widget, index) => (
             <Draggable
               key={index}
-              id={index}
+              id={widget.title + "_" + index}
               title={widget.title}
               icon={widget.icon}
             >
@@ -95,7 +95,7 @@ const WidgetsBar = () => {
           {pageWidget.map((widget, index) => (
             <Draggable
               key={index}
-              id={index}
+              id={widget.title + "_" + index}
               title={widget.title}
               icon={widget.icon}
             >
