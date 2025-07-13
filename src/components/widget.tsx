@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-import type { WidgetProps } from "../types";
+import type { WidgetProps } from "../types/widget-types";
 
 const Widget = (props: WidgetProps) => {
   const width = props.size ?? 24;
