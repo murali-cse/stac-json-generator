@@ -7,7 +7,7 @@ const Widget = (props: WidgetProps) => {
 
   return (
     <>
-      <div className="shadow-md p-5 h-full w-full min-h-24 min-w-24 rounded-lg bg-white">
+      <div className="shadow-md p-5 h-24 w-24 min-h-24 min-w-24  rounded-lg bg-white">
         <div className="flex flex-col justify-between items-center">
           <Icon icon={props.icon} width={width} height={height} />
           <p className="text-sm mt-2 capitalize">{props.title}</p>

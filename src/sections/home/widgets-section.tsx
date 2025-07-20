@@ -1,6 +1,6 @@
 import { useDraggable } from "@dnd-kit/core";
 import Widget from "../../components/widget";
-import Grid from "../../components/grid";
+// import Grid from "../../components/grid";
 import { v4 as uuid } from "uuid";
 import type { WidgetProps } from "../../types/widget-types";
 import { createWidgetByType } from "../../utils/create-widget";
@@ -75,12 +75,8 @@ const pageWidget: WidgetProps[] = [
     icon: "formkit:button",
     widget: {
       id: uuid(),
-      type: "text",
-      data: "App Bar",
-      style: {
-        fontSize: 20,
-        fontWeight: "w600",
-      },
+      type: "appbar",
+      title: "New Page",
     },
   },
 
@@ -97,20 +93,24 @@ const WidgetsBar = () => {
     <div className="px-5 py-10">
       <h2 className="text-xl font-bold">Widgets</h2>
       <div className="mt-4">
-        <p>Commonly Used Widgets</p>
-        <Grid cols={3}>
+        <p className="mb-2">Commonly Used Widgets</p>
+        {/* <Grid cols={3}> */}
+        <div className="flex flex-wrap gap-3">
           {commonWidgets.map((widget, index) => (
             <DraggableWidget key={index} {...widget} />
           ))}
-        </Grid>
+        </div>
+        {/* </Grid> */}
 
         <div className="mt-5" />
-        <p>Page Layout Widgets</p>
-        <Grid cols={3}>
+        <p className="mb-2">Page Layout Widgets</p>
+        {/* <Grid cols={3}> */}
+        <div className="flex flex-wrap gap-3">
           {pageWidget.map((widget, index) => (
             <DraggableWidget key={index} {...widget} />
           ))}
-        </Grid>
+        </div>
+        {/* </Grid> */}
       </div>
     </div>
   );

@@ -69,7 +69,7 @@ export interface SpacerWidget extends WidgetBase {
 export interface ScaffoldWidget extends WidgetBase {
   type: "scaffold";
   body?: Widget;
-  appBar?: Widget;
+  appBar?: AppBarWidget;
   floatingActionButton?: Widget;
 }
 export interface ButtonWidget extends WidgetBase {
@@ -86,6 +86,12 @@ export interface ButtonWidget extends WidgetBase {
   onPressed?: string; // Could be an action ID or route
 }
 
+export interface AppBarWidget extends WidgetBase {
+  type: "appbar";
+  title?: string;
+  backgroundColor?: string;
+}
+
 export type Widget =
   | TextWidget
   | ImageWidget
@@ -96,4 +102,5 @@ export type Widget =
   | SizedBoxWidget
   | SpacerWidget
   | ScaffoldWidget
-  | ButtonWidget;
+  | ButtonWidget
+  | AppBarWidget;

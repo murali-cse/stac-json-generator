@@ -14,6 +14,7 @@ function serializeWidget(widget: Widget): unknown {
   delete (base as any).id;
 
   switch (widget.type) {
+    case "appbar":
     case "text":
     case "image":
     case "spacer":

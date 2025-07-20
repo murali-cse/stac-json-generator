@@ -5,10 +5,33 @@ import { createWidgetByType } from "../utils/create-widget";
 import WidgetCard from "../components/widget";
 import MobileView from "../sections/home/mobile-section";
 import WidgetsBar from "../sections/home/widgets-section";
+import { v4 as uuid } from "uuid";
+
+type activeWidgetType = {
+  title?: string;
+  icon?: string;
+  id?: number;
+};
 
 const Home = () => {
-  const [droppedWidgets, setDroppedWidgets] = useState<Widget[]>([]);
+  const [droppedWidget, setDroppedWidget] = useState<Widget>({
+    id: uuid(),
+    type: "scaffold",
+    appBar: {
+      id: "1",
+      title: "New Page",
+      type: "appbar",
+    },
+    body: {
+      id: "2",
+      type: "column",
+      children: [],
+    },
+  });
   const [activeType, setActiveType] = useState<Widget["type"] | null>(null);
+  const [activeWidget, setActiveWidget] = useState<activeWidgetType | null>(
+    null
+  );
 
   function handleDragStart(event: unknown) {
     if (!event || typeof event !== "object" || !("active" in event)) return;
@@ -18,6 +41,12 @@ const Home = () => {
     const type = (
       dragEvent.active?.data?.current?.widget.type as string
     ).toLowerCase() as Widget["type"];
+
+    setActiveWidget({
+      title: dragEvent.active?.data?.current?.title,
+      icon: dragEvent.active?.data?.current?.icon,
+      id: dragEvent.active?.data?.current?.widget?.id,
+    });
 
     if (type) setActiveType(type);
   }
@@ -31,12 +60,30 @@ const Home = () => {
       dragEvent.active?.data?.current?.widget.type as string
     ).toLowerCase() as Widget["type"];
 
+    // check appbar widget is already existing in the dropped widget
+    const isAppBarExist: boolean = droppedWidget.appBar == "";
+
     if (dragEvent.over?.id === "droppable" && type) {
-      const newWidget = createWidgetByType(type);
-      setDroppedWidgets((prev) => [...prev, newWidget]);
+      if (!isAppBarExist) {
+        const newWidget = createWidgetByType(type);
+
+        setDroppedWidget((prev) => {
+          // insert the new widget into the body of the children
+          if (
+            prev.body &&
+            Array.isArray((prev.body as { children?: unknown[] }).children)
+          ) {
+            (prev.body as { children: unknown[] }).children.push(newWidget);
+          }
+          return {
+            ...prev,
+          };
+        });
+      }
     }
 
     setActiveType(null);
+    setActiveWidget(null);
   }
 
   //   function extractJson() {
@@ -50,7 +97,7 @@ const Home = () => {
         <div className="flex h-full">
           {/* Mobile Preview */}
           <div className="flex-2 overflow-auto">
-            <MobileView droppedWidgets={droppedWidgets} />
+            <MobileView droppedWidget={droppedWidget} />
           </div>
 
           {/* Widget Sidebar */}
@@ -64,7 +111,11 @@ const Home = () => {
       <DragOverlay>
         {activeType ? (
           <div className="w-[80px]">
-            <WidgetCard id={activeType} title={activeType} icon="" />
+            <WidgetCard
+              id={activeType}
+              title={activeWidget?.title ?? "n/a"}
+              icon={activeWidget?.icon ?? ""}
+            />
           </div>
         ) : null}
       </DragOverlay>

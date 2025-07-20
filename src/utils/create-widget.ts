@@ -89,6 +89,13 @@ export const createWidgetByType = (type: Widget["type"]): Widget => {
         type: "spacer",
       };
 
+    case "appbar":
+      return {
+        id: uuid(),
+        type: "appbar",
+        title: "New Page",
+      };
+
     default: {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const _exhaustiveCheck: never = type; // ✅ this enforces all cases handled

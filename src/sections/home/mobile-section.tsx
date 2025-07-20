@@ -1,7 +1,9 @@
 import { useDroppable } from "@dnd-kit/core";
 import { Icon } from "@iconify/react";
 import type { Widget } from "../../models/widget.model";
-import { renderWidget } from "../../components/renderWidget";
+// import { renderWidget } from "../../components/renderWidget";
+// import { extractJsonFromWidgets } from "../../utils/extract-json";
+import { WidgetRenderer } from "../../components/widget-renderer";
 
 // Drop area component
 function Droppable({ children }: { children: React.ReactNode }) {
@@ -22,9 +24,13 @@ function Droppable({ children }: { children: React.ReactNode }) {
 }
 
 // Main mobile layout area
-const MobileView = ({ droppedWidgets }: { droppedWidgets: Widget[] }) => {
+const MobileView = ({ droppedWidget }: { droppedWidget: Widget }) => {
+  // function extractJson() {
+  // const json = extractJsonFromWidgets(droppedWidgets);
+  // console.log(JSON.stringify(json, null, 2));
+  // }
   return (
-    <div className="pt-20 pb-20 bg-gray-200">
+    <div className="pt-10 pb-20 bg-gray-200">
       <div className="flex justify-center items-center flex-col h-screen">
         <div className="h-[852px] w-[393px]">
           <div className="flex justify-end mb-2">
@@ -35,16 +41,12 @@ const MobileView = ({ droppedWidgets }: { droppedWidgets: Widget[] }) => {
 
           <div className="h-full bg-white rounded-3xl overflow-y-auto">
             <Droppable>
-              {droppedWidgets.length === 0 ? (
+              {droppedWidget ? (
+                <WidgetRenderer tree={droppedWidget} />
+              ) : (
                 <p className="text-center text-gray-400 mt-20">
                   Drop widgets here
                 </p>
-              ) : (
-                <div className="space-y-3">
-                  {droppedWidgets.map((widget) => (
-                    <div key={widget.id}>{renderWidget(widget)}</div>
-                  ))}
-                </div>
               )}
             </Droppable>
           </div>
