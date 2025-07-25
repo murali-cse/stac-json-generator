@@ -1,69 +1,93 @@
-# React + TypeScript + Vite
+# 🧩 STAC JSON Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight, extensible **visual JSON generator** for building **STAC (Server-Driven UI)** schemas. Built with a modern **React + Tailwind CSS** drag-and-drop interface.
 
-Currently, two official plugins are available:
+> Inspired by tools like FlutterFlow and Retool, but focused entirely on generating portable STAC JSON for Flutter-based server-driven UIs.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 🎨 **Drag-and-drop UI** builder with live preview
+- ⚡ Generates **STAC-compliant JSON** for server-driven Flutter apps
+- 📦 Widget palette with commonly used components (Text, Image, Button, etc.)
+- 📱 Mobile-first canvas preview to simulate Flutter screens
+- 🧪 JSON output ready to be used inside your own Flutter project
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 📸 Preview
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+![Editor Screenshot](./docs/assets/editor-screenshot.png)
+
+_Initial version featuring screen navigation, preview, and a basic widget set._
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/)
+- npm or yarn
+
+### Clone the Repo
+
+```bash
+git clone https://github.com/murali-cse/stac-json-generator.git
+cd stac-json-generator
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Visit http://localhost:5173 to access the visual builder.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📤 Export & Use
+
+### Once you've designed your UI:
+
+- Click the </> Export icon to download the STAC JSON.
+
+- Use this JSON inside your Flutter project that supports server-driven UI using STAC.
+
+Note: This tool does not render the UI itself. It only generates JSON compatible with your own Flutter STAC runtime.
+
+---
+
+## 📅 Roadmap
+
+- [] Drag to reorder widgets
+- [] Save/load projects from local storage or backend
+- [] Multi-screen flows
+- [] Widget properties editor
+- [] STAC JSON schema validation
+
+## 🛡 License
+
+This project is open-source under the MIT License.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repo
+
+2. Create your branch (git checkout -b feature/my-feature)
+
+3. Commit your changes (git commit -m 'Add some feature')
+
+4. Push to GitHub (git push origin feature/my-feature)
+
+5. Create a Pull Request
+
+---
+
+## 🙌 Acknowledgements
+
+- Inspired by FlutterFlow and other visual editors
+
+- Built with ❤️ using Vite, React, and TailwindCSS
