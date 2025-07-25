@@ -91,3 +91,7 @@ Contributions are welcome!
 - Inspired by FlutterFlow and other visual editors
 
 - Built with ❤️ using Vite, React, and TailwindCSS
+
+## 📬 Contact
+
+Created by @murali-cse. For questions or ideas, open an issue or get in touch!
