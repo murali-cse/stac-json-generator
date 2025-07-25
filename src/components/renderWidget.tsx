@@ -5,38 +5,19 @@ import Image from "./widgets/image";
 import Container from "./widgets/container";
 import Column from "./widgets/column";
 import Row from "./widgets/row";
+import Text from "./widgets/text";
 
 export const renderWidget = (widget: Widget): React.ReactNode => {
   console.log(widget);
   switch (widget.type) {
     case "text":
-      return (
-        <p
-          style={{
-            fontSize: widget.style?.fontSize,
-            fontWeight: widget.style
-              ?.fontWeight as React.CSSProperties["fontWeight"],
-            lineHeight: widget.style?.height,
-            color: widget.style?.color,
-          }}
-        >
-          {widget.data}
-        </p>
-      );
+      return <Text {...widget} />;
 
     case "image":
-      return <Image src={widget.src} id={widget.id} type={widget.type} />;
+      return <Image {...widget} />;
 
     case "container":
-      return (
-        <Container
-          id={widget.id}
-          type="container"
-          child={widget.child}
-          height={widget.height}
-          width={widget.width}
-        />
-      );
+      return <Container {...widget} />;
 
     case "padding":
       return (
@@ -53,14 +34,10 @@ export const renderWidget = (widget: Widget): React.ReactNode => {
       );
 
     case "column":
-      return (
-        <Column id={widget.id} children={widget.children} type={widget.type} />
-      );
+      return <Column {...widget} />;
 
     case "row":
-      return (
-        <Row id={widget.id} children={widget.children} type={widget.type} />
-      );
+      return <Row {...widget} />;
 
     case "sizedBox":
       return (
@@ -76,7 +53,6 @@ export const renderWidget = (widget: Widget): React.ReactNode => {
       return <div style={{ flexGrow: 1 }} />;
 
     case "scaffold":
-      console.log(widget.appBar);
       return (
         <div>
           <div>{widget.appBar && renderWidget(widget.appBar)}</div>
@@ -85,7 +61,7 @@ export const renderWidget = (widget: Widget): React.ReactNode => {
       );
 
     case "appbar":
-      return <AppBar id={widget.id} type={widget.type} widget={widget} />;
+      return <AppBar {...widget} />;
 
     default:
       return <div style={{ border: "1px solid red" }}>Unknown widget</div>;

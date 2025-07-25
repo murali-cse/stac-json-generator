@@ -1,7 +1,8 @@
+import type { Widget } from "../models/widget.model";
 import { widgetSchemas } from "../schemas/widget-schemas";
 import { v4 as uuid } from "uuid";
 
-export const createWidget = (type: string): unknown => {
+export const createWidget = (type: string): Widget => {
   const schema = widgetSchemas[type];
   if (!schema) throw new Error(`Unknown widget type: ${type}`);
 

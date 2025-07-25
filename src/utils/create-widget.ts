@@ -1,20 +1,12 @@
 import { v4 as uuid } from "uuid";
 import type { Widget } from "../models/widget.model";
+import type { WidgetSchema } from "../types/widget-schema";
+import { createWidget } from "../services/widget.factory";
 
-export const createWidgetByType = (type: Widget["type"]): Widget => {
+export const createWidgetByType = (type: WidgetSchema["type"]): Widget => {
   switch (type) {
     case "text":
-      return {
-        id: uuid(),
-        type: "text",
-        data: "New Text",
-        style: {
-          fontSize: 18,
-          fontWeight: "w400",
-          height: 1.5,
-          color: "#000000",
-        },
-      };
+      return createWidget(type);
 
     case "row":
       return { id: uuid(), type: "row", spacing: 10, children: [] };
@@ -97,8 +89,7 @@ export const createWidgetByType = (type: Widget["type"]): Widget => {
       };
 
     default: {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const _exhaustiveCheck: never = type; // ✅ this enforces all cases handled
+      // const _exhaustiveCheck: never = type; // ✅ this enforces all cases handled
       throw new Error(`Unsupported widget type: ${type}`);
     }
   }
