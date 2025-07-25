@@ -74,15 +74,15 @@ export const widgetSchemas: Record<string, WidgetSchema> = {
   container: {
     type: "container",
     defaultProps: {
-      width: 56,
-      height: 56,
+      width: "56",
+      height: "56",
       decoration: { borderRadius: 12 },
       clipBehavior: "hardEdge",
       child: null,
     },
     propertySchema: [
-      { key: "width", label: "Width", type: "number", default: 56 },
-      { key: "height", label: "Height", type: "number", default: 56 },
+      { key: "width", label: "Width", type: "string", default: "56" },
+      { key: "height", label: "Height", type: "string", default: "56" },
       {
         key: "decoration.borderRadius",
         label: "Border Radius",

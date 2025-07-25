@@ -1,6 +1,10 @@
 import React from "react";
 import type { Widget } from "../models/widget.model";
 import AppBar from "./widgets/appbar";
+import Image from "./widgets/image";
+import Container from "./widgets/container";
+import Column from "./widgets/column";
+import Row from "./widgets/row";
 
 export const renderWidget = (widget: Widget): React.ReactNode => {
   console.log(widget);
@@ -21,31 +25,17 @@ export const renderWidget = (widget: Widget): React.ReactNode => {
       );
 
     case "image":
-      return (
-        <div className="hover:border-green-600 hover:border-2 relative group/image">
-          <div className="bg-green-600 text-white p-1 font-light text-xs absolute invisible  group-hover/image:visible">
-            image
-          </div>
-          <img
-            src={widget.src}
-            alt="image"
-            style={{ width: "100%", objectFit: "cover" }}
-          />
-        </div>
-      );
+      return <Image src={widget.src} id={widget.id} type={widget.type} />;
 
     case "container":
       return (
-        <div
-          style={{
-            width: widget.width,
-            height: widget.height,
-            overflow: widget.clipBehavior === "hardEdge" ? "hidden" : "visible",
-            borderRadius: widget.decoration?.borderRadius,
-          }}
-        >
-          {widget.child && renderWidget(widget.child)}
-        </div>
+        <Container
+          id={widget.id}
+          type="container"
+          child={widget.child}
+          height={widget.height}
+          width={widget.width}
+        />
       );
 
     case "padding":
@@ -64,41 +54,12 @@ export const renderWidget = (widget: Widget): React.ReactNode => {
 
     case "column":
       return (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: widget.spacing ?? 0,
-            height: "100vh",
-          }}
-          className="hover:border-orange-500 hover:border-2 relative group/column"
-        >
-          <div className="absolute text-xs top-0 p-1 bg-orange-400 hidden group-hover/column:block z-10">
-            <p className="text-white text-xs">column</p>
-          </div>
-          {widget.children?.map((child) => (
-            <React.Fragment key={child.id}>
-              {renderWidget(child)}
-            </React.Fragment>
-          ))}
-        </div>
+        <Column id={widget.id} children={widget.children} type={widget.type} />
       );
 
     case "row":
       return (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            gap: widget.spacing ?? 0,
-          }}
-        >
-          {widget.children?.map((child) => (
-            <React.Fragment key={child.id}>
-              {renderWidget(child)}
-            </React.Fragment>
-          ))}
-        </div>
+        <Row id={widget.id} children={widget.children} type={widget.type} />
       );
 
     case "sizedBox":

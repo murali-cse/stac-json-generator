@@ -2,7 +2,6 @@ export interface WidgetBase {
   id: string;
   type: string;
   child?: Widget;
-  children?: Widget[];
   [key: string]: unknown;
 }
 
@@ -24,8 +23,8 @@ export interface ImageWidget extends WidgetBase {
 
 export interface ContainerWidget extends WidgetBase {
   type: "container";
-  width?: number;
-  height?: number;
+  width?: string;
+  height?: string;
   clipBehavior?: "hardEdge" | string;
   decoration?: {
     borderRadius?: number;

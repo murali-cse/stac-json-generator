@@ -26,8 +26,8 @@ export const createWidgetByType = (type: Widget["type"]): Widget => {
       return {
         id: uuid(),
         type: "container",
-        width: 100,
-        height: 100,
+        width: "100%",
+        height: "100px",
         decoration: { borderRadius: 12 },
         clipBehavior: "hardEdge",
         child: undefined,
