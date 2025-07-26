@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import widgetPanelReducer from "./slices/widget-panel/widget_panel";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    widgetPanel: widgetPanelReducer,
+  },
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

@@ -1,6 +1,6 @@
 import React from "react";
 import type { RowWidget } from "../../models/widget.model";
-import { renderWidget } from "../renderWidget";
+import { renderWidget } from "../render_widget";
 
 const Row = (widget: RowWidget) => {
   return (

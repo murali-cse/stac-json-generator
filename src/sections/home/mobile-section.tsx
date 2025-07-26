@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 import type { Widget } from "../../models/widget.model";
 // import { renderWidget } from "../../components/renderWidget";
 // import { extractJsonFromWidgets } from "../../utils/extract-json";
-import { WidgetRenderer } from "../../components/widget-renderer";
+import { WidgetRenderer } from "../../components/widget_renderer";
 
 // Drop area component
 function Droppable({ children }: { children: React.ReactNode }) {

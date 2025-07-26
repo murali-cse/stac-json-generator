@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <div className="flex">
-        <div className="w-100 flex-none">
+        <div className="w-96 flex-none">
           <Sidebar />
         </div>
         <div className="flex-1">

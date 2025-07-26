@@ -1,4 +1,4 @@
-import { renderWidget } from "./renderWidget";
+import { renderWidget } from "./render_widget";
 import type { Widget } from "../models/widget.model";
 
 interface WidgetRendererProps {
