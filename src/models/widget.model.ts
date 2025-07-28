@@ -103,3 +103,16 @@ export type Widget =
   | ScaffoldWidget
   | ButtonWidget
   | AppBarWidget;
+
+export type WidgetType =
+  | "text"
+  | "image"
+  | "container"
+  | "row"
+  | "column"
+  | "padding"
+  | "sizedBox"
+  | "spacer"
+  | "scaffold"
+  | "button"
+  | "appbar";

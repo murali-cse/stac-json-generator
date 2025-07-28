@@ -5,7 +5,7 @@ import HoverWidget from "../hover_widget";
 
 const Column = (widget: ColumnWidget) => {
   return (
-    <HoverWidget color="orange" type="column" text="column">
+    <HoverWidget id={widget.id} color="orange" type="column" text="column">
       <div
         style={{
           display: "flex",

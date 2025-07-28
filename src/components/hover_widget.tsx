@@ -1,16 +1,21 @@
-import {
-  type CSSProperties,
-  type MouseEventHandler,
-  type ReactNode,
-} from "react";
+import { type CSSProperties, type ReactNode } from "react";
+import type { WidgetType } from "../models/widget.model";
 
 interface HoverWidgetType {
   text: string;
-  type: "appBar" | "column" | "row" | "text" | "container";
+  type: WidgetType;
+  id: string;
   color: "blue" | "red" | "orange" | "green";
   style?: CSSProperties;
-  onClick?: MouseEventHandler;
+  onClick?: (id: string) => void;
   children: ReactNode;
+}
+
+interface HoverConfigProps {
+  group: string;
+  label: string;
+  border: string;
+  zIndex?: string;
 }
 
 const HoverWidget = ({
@@ -18,11 +23,12 @@ const HoverWidget = ({
   type,
   color,
   style,
+  id,
   onClick,
   children,
 }: HoverWidgetType) => {
-  const hoverConfig = {
-    appBar: {
+  const hoverConfig: Record<WidgetType, HoverConfigProps> = {
+    appbar: {
       group: "group/appbar",
       label: "hidden group-hover/appbar:block",
       border: "opacity-0 group-hover/appbar:opacity-100",
@@ -48,6 +54,36 @@ const HoverWidget = ({
       label: "hidden group-hover/container:block",
       border: "opacity-0 group-hover/container:opacity-100",
     },
+    scaffold: {
+      group: "group/container",
+      label: "hidden group-hover/container:block",
+      border: "opacity-0 group-hover/container:opacity-100",
+    },
+    spacer: {
+      group: "group/container",
+      label: "hidden group-hover/container:block",
+      border: "opacity-0 group-hover/container:opacity-100",
+    },
+    button: {
+      group: "group/container",
+      label: "hidden group-hover/container:block",
+      border: "opacity-0 group-hover/container:opacity-100",
+    },
+    image: {
+      group: "group/container",
+      label: "hidden group-hover/container:block",
+      border: "opacity-0 group-hover/container:opacity-100",
+    },
+    padding: {
+      group: "group/container",
+      label: "hidden group-hover/container:block",
+      border: "opacity-0 group-hover/container:opacity-100",
+    },
+    sizedBox: {
+      group: "group/container",
+      label: "hidden group-hover/container:block",
+      border: "opacity-0 group-hover/container:opacity-100",
+    },
   };
 
   const labelConfig = {
@@ -64,11 +100,17 @@ const HoverWidget = ({
     green: "border-green-600",
   };
 
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onClick?.(id);
+  };
+
   return (
     <div
       className={`relative ${hoverConfig[type].group} cursor-pointer`}
       style={style}
-      onClick={onClick}
+      onClick={handleClick}
+      data-id={id}
     >
       {/* Label on hover */}
       <div

@@ -8,7 +8,6 @@ import Row from "./widgets/row";
 import Text from "./widgets/text";
 
 export const renderWidget = (widget: Widget): React.ReactNode => {
-  console.log(widget);
   switch (widget.type) {
     case "text":
       return <Text {...widget} />;

@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import widgetPanelReducer from "./slices/widget-panel/widget_panel";
+import widgetPanelReducer from "./slices/widget-panel/widget_panel.slice";
+import widgetPropertiesReducer from "./slices/widgets/widget_properties.slice";
 
 export const store = configureStore({
   reducer: {
     widgetPanel: widgetPanelReducer,
+    widgetProperties: widgetPropertiesReducer,
   },
 });
 

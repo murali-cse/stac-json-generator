@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import type { AppBarWidget as appbar } from "../../models/widget.model";
 import HoverWidget from "../hover_widget";
-import { updateShowProperties } from "../../slices/widget-panel/widget_panel";
+import { updateShowProperties } from "../../slices/widget-panel/widget_panel.slice";
 
 const AppBar = (widget: appbar) => {
   const dispatch = useDispatch();
@@ -10,13 +10,20 @@ const AppBar = (widget: appbar) => {
     dispatch(
       updateShowProperties({
         showProperties: true,
-        widgetType: "App Bar",
+        widgetType: widget.type,
+        id: widget.id,
       })
     );
   };
 
   return (
-    <HoverWidget type="appBar" text="app bar" color="blue" onClick={onTap}>
+    <HoverWidget
+      id={widget.id}
+      type={widget.type}
+      text="app bar"
+      color="blue"
+      onClick={onTap}
+    >
       <div
         style={{
           backgroundColor: widget.backgroundColor ?? "#6002ee",

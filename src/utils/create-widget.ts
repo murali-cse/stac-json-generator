@@ -1,9 +1,9 @@
 import { v4 as uuid } from "uuid";
-import type { Widget } from "../models/widget.model";
-import type { WidgetSchema } from "../types/widget-schema";
+import type { Widget, WidgetType } from "../models/widget.model";
+// import type { WidgetSchema } from "../types/widget-schema";
 import { createWidget } from "../services/widget.factory";
 
-export const createWidgetByType = (type: WidgetSchema["type"]): Widget => {
+export const createWidgetByType = (type: WidgetType): Widget => {
   switch (type) {
     case "text":
       return createWidget(type);

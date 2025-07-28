@@ -1,19 +1,25 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { WidgetSchema } from "../../types/widget-schema";
+import type { WidgetType } from "../../models/widget.model";
 
-export interface WidgetPanelState {
+// ============ interfaces ------------------
+interface WidgetPanelState {
   showProperties: boolean;
-  selectedWidgetType?: WidgetSchema["type"];
+  selectedWidgetType?: WidgetType;
+  id: string;
 }
 
 interface updatePropertiesPayload {
+  id?: string;
   showProperties: boolean;
-  widgetType?: string;
+  widgetType?: WidgetType;
 }
+
+// ===========================================
 
 const initialState: WidgetPanelState = {
   showProperties: false,
   selectedWidgetType: undefined,
+  id: "",
 };
 
 export const widgetPanelSlice = createSlice({
