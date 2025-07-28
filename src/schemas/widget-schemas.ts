@@ -10,6 +10,7 @@ export const widgetSchemas: Record<string, WidgetSchema> = {
     },
     propertySchema: [],
     childType: "single",
+    hasText: false,
     allowedChildrenTypes: ["padding", "column", "container"],
   },
 
@@ -26,6 +27,7 @@ export const widgetSchemas: Record<string, WidgetSchema> = {
       { key: "padding.bottom", label: "Bottom", type: "number", default: 24 },
     ],
     childType: "single",
+    hasText: false,
     allowedChildrenTypes: ["column", "row", "text", "container"],
   },
 
@@ -51,6 +53,7 @@ export const widgetSchemas: Record<string, WidgetSchema> = {
         default: 0,
       },
     ],
+    hasText: false,
     childType: "multi",
   },
 
@@ -68,6 +71,7 @@ export const widgetSchemas: Record<string, WidgetSchema> = {
         default: 0,
       },
     ],
+    hasText: false,
     childType: "multi",
   },
 
@@ -96,6 +100,7 @@ export const widgetSchemas: Record<string, WidgetSchema> = {
         default: "hardEdge",
       },
     ],
+    hasText: false,
     childType: "single",
   },
 
@@ -107,6 +112,7 @@ export const widgetSchemas: Record<string, WidgetSchema> = {
     propertySchema: [
       { key: "src", label: "Image URL", type: "string", default: "" },
     ],
+    hasText: false,
     childType: null,
   },
 
@@ -144,6 +150,7 @@ export const widgetSchemas: Record<string, WidgetSchema> = {
       },
       { key: "style.color", label: "Color", type: "color", default: "#000000" },
     ],
+    hasText: true,
     childType: null,
   },
 
@@ -155,6 +162,7 @@ export const widgetSchemas: Record<string, WidgetSchema> = {
     propertySchema: [
       { key: "height", label: "Height", type: "number", default: 20 },
     ],
+    hasText: false,
     childType: null,
   },
 
@@ -162,6 +170,7 @@ export const widgetSchemas: Record<string, WidgetSchema> = {
     type: "spacer",
     defaultProps: {},
     propertySchema: [],
+    hasText: true,
     childType: null,
   },
 };

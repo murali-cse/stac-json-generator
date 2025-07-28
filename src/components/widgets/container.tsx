@@ -5,7 +5,8 @@ import { renderWidget } from "../render_widget";
 const Container = (widget: ContainerWidget) => {
   return (
     <HoverWidget
-      color="red"
+      color="green"
+      type="container"
       text="Container"
       style={{
         width: widget.width ?? "100%",

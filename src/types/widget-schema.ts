@@ -18,5 +18,6 @@ export interface WidgetSchema {
   defaultProps: Record<string, unknown>;
   propertySchema: WidgetPropertyConfig[];
   childType: "single" | "multi" | null;
+  hasText: boolean;
   allowedChildrenTypes?: string[];
 }

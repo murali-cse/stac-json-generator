@@ -17,7 +17,7 @@ const Text = (widget: TextWidget) => {
   };
 
   return (
-    <HoverWidget color="amber" text="text" onClick={onTap}>
+    <HoverWidget type="text" color="red" text="text" onClick={onTap}>
       <p
         style={{
           fontSize: widget.style?.fontSize,
