@@ -32,6 +32,7 @@ export const widgetPanelSlice = createSlice({
     ) => {
       state.showProperties = action.payload.showProperties;
       state.selectedWidgetType = action.payload.widgetType;
+      state.id = action.payload.id ?? "";
     },
   },
 });

@@ -1,32 +1,44 @@
 import React from "react";
 import type { RowWidget } from "../../models/widget.model";
 import { renderWidget } from "../render_widget";
+import HoverWidget from "../hover_widget";
+import { updateShowProperties } from "../../slices/widget-panel/widget_panel.slice";
+import { useDispatch } from "react-redux";
 
 const Row = (widget: RowWidget) => {
+  const dispatch = useDispatch();
+
+  const onTap = () => {
+    dispatch(
+      updateShowProperties({
+        showProperties: true,
+        widgetType: widget.type,
+        id: widget.id,
+      })
+    );
+  };
+
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        gap: widget.spacing ?? 0,
-        width: "100%",
-      }}
-      className="relative group/row"
+    <HoverWidget
+      id={widget.id}
+      color="orange"
+      type="column"
+      text="column"
+      onClick={onTap}
     >
-      {/* Label visible on hover */}
-      <div className="absolute top-0 left-0 bg-purple-400 text-white text-xs px-1 py-0.5 rounded z-10 pointer-events-none hidden group-hover/row:block">
-        row
-      </div>
-
-      {/* Outline only on hover */}
-      <div className="absolute inset-0 border-2 border-purple-500 rounded z-0 opacity-0 group-hover/row:opacity-100 pointer-events-none"></div>
-
-      <div className="relative z-10">
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: widget.spacing ?? 0,
+          height: "100vh",
+        }}
+      >
         {widget.children?.map((child) => (
           <React.Fragment key={child.id}>{renderWidget(child)}</React.Fragment>
         ))}
       </div>
-    </div>
+    </HoverWidget>
   );
 };
 
